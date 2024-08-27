@@ -100,7 +100,7 @@ public class Bot {
             System.out.print(bot.capital + " ");
         }
     }
-
+    @Override
     public Bot clone() {
         return new Bot(
                 this.turns,

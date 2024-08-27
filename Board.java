@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Board {
-    public ArrayList<Integer> minePositions = new ArrayList<Integer>();
+    public ArrayList<Integer> minePositions = new ArrayList<>();
 
     public Board (int mines) {
         randomizeBoard(mines);
@@ -10,7 +10,7 @@ public class Board {
 
     private void randomizeBoard(int mines) {
 
-        ArrayList<Integer> numberBoard = new ArrayList<Integer>();
+        ArrayList<Integer> numberBoard = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             numberBoard.add(i);
         }
