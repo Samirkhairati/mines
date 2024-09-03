@@ -16,24 +16,28 @@ public class Swarm {
         }
     }
 
-    public void live() {
-        for (Bot bot : bots) {
-            bot.play();
-        }
-    }
+    public void thrive(int retests) {
 
-    public void logLogs() {
+        int counter = 1;
         for (Bot bot : bots) {
-            System.out.println(bot.capital);
-            for (boolean value: bot.logs) {
-                System.out.print(value + " ");
+            for (int i = 0; i < retests; i++) {
+                bot.play();
+                System.out.printf("Bot %s ----- Round %s ----- Capital $%s%n", counter, i, bot.capital);
             }
             System.out.println();
+            counter++;
         }
     }
 
+    public void logCapital() {
+        for (Bot bot : bots) {
+            System.out.println(bot.capital);
+        }
+    }
+
+
     private Bot createBot() {
-        int turns = random(5,20);
+        int turns = random(20,50);
         int mines = random(1,10);
         int picks = random(1,10);
         float initialBet = random(0.01f, 10.0f);
@@ -49,9 +53,8 @@ public class Swarm {
     public void showTopBots(int numberOfBots) {
         int size = bots.size();
         int start = Math.max(size - numberOfBots, 0);  // Calculate the starting index for the last 10 items
-
         for (int i = start; i < size; i++) {
-            System.out.println(i + "  " + bots.get(i).getData());
+            System.out.printf("Bot %s %s%n", i+1,  bots.get(i).getData());
         }
     }
 

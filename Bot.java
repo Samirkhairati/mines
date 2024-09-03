@@ -12,7 +12,7 @@ public class Bot {
     final private float initialBet;
 
     private float bet;
-    public ArrayList<Boolean> logs = new ArrayList<Boolean>();
+    public ArrayList<Float> logs = new ArrayList<>();
 //    public HashMap<Float, Float> = new HashMap<Float, Float>();
     public float capital = 1000;
 
@@ -62,10 +62,11 @@ public class Bot {
             Round round = new Round(this.mines, this.picks);
             float profit = round.play(bet);
             boolean thisRoundWin = profit > 0;
-            this.logs.add(thisRoundWin);
+            this.logs.add(profit);
             this.bet = changeBet(thisRoundWin);
             this.capital += profit;
         }
+        bet = initialBet;
     }
 
     public String getData() {
@@ -84,6 +85,13 @@ public class Bot {
                 '}';
     }
 
+    public static void logProfits(Bot bot) {
+        System.out.println("Showing profit logger of provided bot: ");
+        for (float value: bot.logs) {
+            System.out.println(value + " ");
+        }
+    }
+
     public static void retest(int rounds,Bot bot) {
         System.out.println("-----------------------------------------------------------------");
         for (int j = 0; j < rounds; j++) {
@@ -92,7 +100,7 @@ public class Bot {
                 Round round = new Round(bot.mines, bot.picks);
                 float profit = round.play(bot.bet);
                 boolean thisRoundWin = profit > 0;
-                bot.logs.add(thisRoundWin);
+                bot.logs.add(profit);
                 bot.bet = bot.changeBet(thisRoundWin);
                 bot.capital += profit;
                // System.out.println(bot.getData());
